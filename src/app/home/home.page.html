@@ -7,8 +7,24 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-item *ngIf="loading">
+    <h1>Loading...</h1>
+  </ion-item>
+
+  <ion-virtual-scroll
+    [items]="pokemonList"
+    *ngIf="!loading"
+    approxItemHeight="320px"
+  >
+    <ion-item *virtualItem="let pokemon" detail="true">
+      <ion-avatar slot="start">
+        <ion-img src="{{ pokemon.imageUrl }}"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ pokemon.name }}</h2>
+        <h3></h3>
+      </ion-label>
+      <ion-button fill="outline" slot="end">{{ pokemon.id }}</ion-button>
+    </ion-item>
+  </ion-virtual-scroll>
 </ion-content>
