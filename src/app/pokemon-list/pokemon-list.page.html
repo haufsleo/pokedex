@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Pokémon
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,20 +11,19 @@
     <h1>Loading...</h1>
   </ion-item>
 
-  <ion-virtual-scroll
-    [items]="pokemonList"
-    *ngIf="!loading"
-    approxItemHeight="320px"
-  >
-    <ion-item *virtualItem="let pokemon" detail="true">
+  <ion-list>
+    <ion-item
+      *ngFor="let pokemon of pokemonList"
+      [routerLink]="['/pokemon-list', pokemon.id]"
+    >
       <ion-avatar slot="start">
-        <ion-img src="{{ pokemon.imageUrl }}"></ion-img>
+        <ion-img src="{{ getThumpnailUrl(pokemon.id) }}"></ion-img>
       </ion-avatar>
       <ion-label>
-        <h2>{{ pokemon.name }}</h2>
+        <h2>{{ pokemon.name.english }}</h2>
         <h3></h3>
       </ion-label>
       <ion-button fill="outline" slot="end">{{ pokemon.id }}</ion-button>
     </ion-item>
-  </ion-virtual-scroll>
+  </ion-list>
 </ion-content>

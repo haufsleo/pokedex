@@ -27,6 +27,8 @@ export class PokemonHttpService {
   pokemonsChanged = new Subject<PokemonData[]>();
   pokemons: PokemonData[] = [];
 
+  
+
   getPokemonListData() {
     this.pokemons = [];
 

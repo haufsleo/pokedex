@@ -1,0 +1,8 @@
+{
+  "appId": "de.haufs.pokedex",
+  "appName": "pokedex",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

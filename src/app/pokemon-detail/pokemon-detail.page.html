@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ currentPokemon?.name.english }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-img [src]="getImageUrl(currentPokemon.id)"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-list>
+        <ion-list-header>
+          Types:
+        </ion-list-header>
+        <ion-item *ngFor="let type of currentPokemon.type">
+          {{ type }}
+        </ion-item>
+        <ion-list-header>
+          Base
+        </ion-list-header>
+        <ion-item> HP: {{ currentPokemon.base.HP }} </ion-item>
+        <ion-item> Attack: {{ currentPokemon.base.Attack }} </ion-item>
+        <ion-item> SP Attack: {{ currentPokemon.base.SPAttack }} </ion-item>
+        <ion-item> SP Defense: {{ currentPokemon.base.SPDefense }} </ion-item>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+</ion-content>
