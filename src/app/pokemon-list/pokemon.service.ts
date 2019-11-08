@@ -47,8 +47,7 @@ export class PokemonService {
   }
 
   getThumpnailUrlForPokemonId(id: number) {
-    const baseUrl =
-      'https://github.com/fanzeyi/pokemon.json/blob/master/thumbnails/';
+    const baseUrl = 'assets/thumbnails/';
     let idFormated = String(id);
     if (id <= 9) {
       idFormated = '00' + String(id);
@@ -56,7 +55,7 @@ export class PokemonService {
       idFormated = '0' + String(id);
     }
 
-    const imageUrl = baseUrl + idFormated + '.png?raw=true';
+    const imageUrl = baseUrl + idFormated + '.png';
     return imageUrl;
   }
 
