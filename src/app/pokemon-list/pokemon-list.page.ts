@@ -32,6 +32,7 @@ export class PokemonListPage implements OnInit, OnDestroy {
   // pokemonList: PokemonData[];
   pokemonList: PokedexEntry[];
   favMode = false;
+  searchWord = '';
 
   getThumpnailUrl = this.pokemonService.getThumpnailUrlForPokemonId;
 
@@ -39,7 +40,14 @@ export class PokemonListPage implements OnInit, OnDestroy {
 
   filteredPokemon = () => {
     return this.pokemonList.filter(pokemon => {
-      return !this.favMode || this.pokemonIsFavorite(pokemon.id);
+      const found =
+        pokemon.name.english
+          .toLowerCase()
+          .indexOf(this.searchWord.toLowerCase()) > -1;
+      const inRightFavState =
+        !this.favMode || this.pokemonIsFavorite(pokemon.id);
+
+      return found && inRightFavState;
     });
   };
 
@@ -49,13 +57,6 @@ export class PokemonListPage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.httpService.getPokemonListData();
-
-    // this.pokemonListSubscription = this.httpService.pokemonsChanged.subscribe(
-    //   pokemons => {
-    //     this.pokemonList = pokemons.sort((a, b) => a.id - b.id);
-    //     this.loading = false;
-    //   }
-    // );
     this.pokemonList = this.pokemonService.getPokemonList();
   }
 

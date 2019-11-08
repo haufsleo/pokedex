@@ -10,6 +10,12 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="searchWord"
+      showCancelButton="focus"
+    ></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
