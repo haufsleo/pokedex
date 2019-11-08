@@ -28,6 +28,7 @@ export class PokemonService {
   constructor() {}
 
   pokemonList: PokedexEntry[] = pokedex;
+  favoriteIds: number[] = [];
 
   getPokemonList() {
     return [...this.pokemonList];
@@ -58,4 +59,29 @@ export class PokemonService {
     const imageUrl = baseUrl + idFormated + '.png?raw=true';
     return imageUrl;
   }
+
+  getFavoriteIds = () => {
+    return [...this.favoriteIds];
+  };
+
+  pokemonWithIdIsFavorite = (id: number) => {
+    if (!this.favoriteIds) {
+      return false;
+    }
+    return this.favoriteIds.indexOf(id) !== -1;
+  };
+
+  changeFavstatus = (id: number, markAsFavorite: boolean) => {
+    console.log('this.favoriteIds', this.favoriteIds);
+
+    if (markAsFavorite) {
+      if (!this.pokemonWithIdIsFavorite(id)) {
+        this.favoriteIds.push(id);
+      }
+    } else {
+      if (this.pokemonWithIdIsFavorite(id)) {
+        this.favoriteIds.splice(this.favoriteIds.indexOf(id), 1);
+      }
+    }
+  };
 }

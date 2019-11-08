@@ -25,6 +25,8 @@ export class PokemonDetailPage implements OnInit {
   ) {}
 
   getImageUrl = this.pokemonService.getImageUrlForPokemonId;
+  pokemonWithIdIsFavorite = this.pokemonService.pokemonWithIdIsFavorite;
+  changeFavstatus = this.pokemonService.changeFavstatus;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {

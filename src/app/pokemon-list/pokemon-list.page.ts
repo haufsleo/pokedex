@@ -31,13 +31,23 @@ export class PokemonListPage implements OnInit, OnDestroy {
   private pokemonListSubscription: Subscription;
   // pokemonList: PokemonData[];
   pokemonList: PokedexEntry[];
-  loading = false;
+  favMode = false;
 
   getThumpnailUrl = this.pokemonService.getThumpnailUrlForPokemonId;
 
-  ngOnInit(): void {
-    this.loading = true;
+  pokemonIsFavorite = this.pokemonService.pokemonWithIdIsFavorite;
 
+  filteredPokemon = () => {
+    return this.pokemonList.filter(pokemon => {
+      return !this.favMode || this.pokemonIsFavorite(pokemon.id);
+    });
+  };
+
+  switchFavMode = () => {
+    this.favMode = !this.favMode;
+  };
+
+  ngOnInit(): void {
     this.httpService.getPokemonListData();
 
     // this.pokemonListSubscription = this.httpService.pokemonsChanged.subscribe(

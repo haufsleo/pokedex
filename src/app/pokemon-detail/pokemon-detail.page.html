@@ -4,6 +4,25 @@
       <ion-back-button defaultHref=""></ion-back-button>
     </ion-buttons>
     <ion-title>{{ currentPokemon?.name.english }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="
+          changeFavstatus(
+            currentPokemon.id,
+            !pokemonWithIdIsFavorite(currentPokemon.id)
+          )
+        "
+      >
+        <ion-icon
+          *ngIf="!pokemonWithIdIsFavorite(currentPokemon.id)"
+          name="star-outline"
+        ></ion-icon>
+        <ion-icon
+          *ngIf="pokemonWithIdIsFavorite(currentPokemon.id)"
+          name="star"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
