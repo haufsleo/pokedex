@@ -27,21 +27,28 @@ import {
 import {
     AppComponent,
 } from './app.component';
+import {
+    AddPokemonPageModule,
+} from './pokemon-list/add-pokemon/add-pokemon.module';
+import {
+    AddPokemonPage,
+} from './pokemon-list/add-pokemon/add-pokemon.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule,
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    entryComponents: [AddPokemonPage],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        HttpClientModule,
+        AddPokemonPageModule,
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -9,34 +9,36 @@ import {
 import {
     PokedexEntry,
     PokemonService,
-} from '../pokemon-list/pokemon.service';
+} from '../services/pokemon.service';
 
 @Component({
-  selector: 'app-pokemon-detail',
-  templateUrl: './pokemon-detail.page.html',
-  styleUrls: ['./pokemon-detail.page.scss'],
+    selector: 'app-pokemon-detail',
+    templateUrl: './pokemon-detail.page.html',
+    styleUrls: ['./pokemon-detail.page.scss'],
 })
 export class PokemonDetailPage implements OnInit {
-  currentPokemon: PokedexEntry;
+    currentPokemon: PokedexEntry;
 
-  constructor(
-    private pokemonService: PokemonService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    constructor(
+        private pokemonService: PokemonService,
+        private activatedRoute: ActivatedRoute
+    ) {}
 
-  getImageUrl = this.pokemonService.getImageUrlForPokemonId;
-  pokemonWithIdIsFavorite = this.pokemonService.pokemonWithIdIsFavorite;
-  changeFavstatus = this.pokemonService.changeFavstatus;
+    getImageUrl = this.pokemonService.getImageUrlForPokemonId;
+    pokemonWithIdIsFavorite = this.pokemonService.pokemonWithIdIsFavorite;
+    changeFavstatus = this.pokemonService.changeFavstatus;
 
-  ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(paramMap => {
-      if (!paramMap.has('pokemonId')) {
-        return;
-      }
-      const pokemonId = paramMap.get('pokemonId');
-      console.log('pokemonId', pokemonId);
+    ngOnInit() {
+        this.activatedRoute.paramMap.subscribe(paramMap => {
+            if (!paramMap.has('pokemonId')) {
+                return;
+            }
+            const pokemonId = paramMap.get('pokemonId');
+            console.log('pokemonId', pokemonId);
 
-      this.currentPokemon = this.pokemonService.getPokemonFromId(+pokemonId);
-    });
-  }
+            this.currentPokemon = this.pokemonService.getPokemonFromId(
+                +pokemonId
+            );
+        });
+    }
 }
